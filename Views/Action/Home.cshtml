@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MvcProject.Models.UpdateModel>
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+
+<body>
+    <div style="margin-top:60px;">
+        <table id="myTable" class="table table-bordered,table-responsive">
+        <tr>
+           <th>Profile Photo</th>
+           <th>Roll No</th>
+           <th>Name</th>
+           <th>Email Id</th>
+           <th>Password</th>
+           <th>Phone No</th>
+           <th>Gender</th>
+           <th>Department</th>
+        </tr>
+
+        @if(Model != null)
+        {
+            @foreach(var it in Model.Where(it => it != null))
+            {
+                <tr>
+                    <td><img alt="" src="@it.source" style="height:80px;width:80px;" /></td>
+                    <td>@it.roll_No</td>
+                    <td>@it.name</td>
+                    <td>@it.email</td>
+                    <td>@it.password</td>
+                    <td>@it.mobile</td>
+                    <td>@it.gender</td>
+                    <td>@it.dept</td>
+                    <td>@Html.ActionLink("Update","Update","Action", new{id = it.roll_No})</td>
+                    <td>@Html.ActionLink("Delete","Delete","Action", new{id = it.roll_No})</td>
+                </tr>
+            }
+        }
+     </table>
+    </div>
+</body>
+</html>
+

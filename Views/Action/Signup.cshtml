@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+}
+@model ActionModel;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <link rel="stylesheet" href="https://colorlib.com/etc/regform/colorlib-regform-8/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" href="https://colorlib.com/etc/regform/colorlib-regform-8/css/style.css">
+    <meta name="robots" content="noindex, follow">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <section class="signup">
+
+            <div class="container">
+                <div class="signup-content">
+                    @using (Html.BeginForm("Signup", "Action", FormMethod.Post , new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h2 class="form-title">Create account</h2>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.rollNo, new {placeholder = "Enter Roll No",@class = "form-input"})
+                            @Html.ValidationMessageFor(model => model.rollNo,"",new{@class = "text-danger"})
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model._name, new { placeholder = "Enter Your Name", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model._name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.email, new { placeholder = "Enter Email Address.", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <p>Insert Image</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-input" name="img" />
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.password, new { placeholder = "Enter Password", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.mobile, new { placeholder = "Enter Mobile No", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.mobile, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <p>Gender</p>
+                        </div>
+                        <div class="form-group">
+                            @Html.RadioButtonFor(model => model.gender, "Male", new { id = "male-true" })
+                            @Html.Label("male-true", "Male")
+                            @Html.RadioButtonFor(model => model.gender, "Female", new { id = "female-true" })
+                            @Html.Label("female-true", "Female")
+                            @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownListFor(model => model.dept, new List<SelectListItem> {
+                            new SelectListItem { Text="--Select Department--",Value="0"},
+                            new SelectListItem { Text="IT",Value="IT"},
+                            new SelectListItem { Text="CSE",Value="CSE"},
+                            new SelectListItem { Text="ECE",Value="ECE"},
+                            new SelectListItem { Text="EN",Value="EN"}
+                            }, new { @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.dept, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" />
+                        </div>
+                    }
+                    <p class="loginhere">
+                        Have already an account ? <a href="@Url.Action("Login","Action", new { area="" })" class="loginhere-link">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+   </body>
+</html>

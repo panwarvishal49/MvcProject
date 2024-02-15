@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MvcProject.Models.UploadResumeModel>
+@{
+    ViewData["Title"] = "ViewResume";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+
+<body>
+    <div style="margin-top:60px;">
+        <table class="table table-bordered,table-responsive">
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Email Id</th>
+                <th>Resume</th>
+            </tr>
+
+            @if (Model != null)
+            {
+                @foreach (var it in Model.Where(it => it != null))
+                {
+                    <tr>
+                        <td>@it.roll_no</td>
+                        <td>@it.name</td>
+                        <td>@it.email</td>
+                        <td>@it.filename</td>
+                        <td>@Html.ActionLink("Download", "DownloadFile", "Action",new{id = it.roll_no})</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</body>
+</html>
+

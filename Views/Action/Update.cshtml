@@ -1,0 +1,82 @@
+﻿@model MvcProject.Models.RegisterModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+    <link rel="stylesheet" href="https://colorlib.com/etc/regform/colorlib-regform-8/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" href="https://colorlib.com/etc/regform/colorlib-regform-8/css/style.css">
+    <meta name="robots" content="noindex, follow">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    
+</head>
+<body>
+    <div class="main">
+        <section class="signup">
+
+            <div class="container">
+                <div class="signup-content">
+                  @using(Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.roll_No)
+                            @Html.TextBoxFor(model => model.roll_No, new { placeholder = "Enter Roll No", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.roll_No, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.name, new { placeholder = "Enter Your Name", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.email, new { placeholder = "Enter Email Address.", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.password, new { placeholder = "Enter Password", @class = "form-input" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.mobile, new { placeholder = "Enter Mobile No", @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.mobile, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <p>Gender</p>
+                        </div>
+                        <div class="form-group">
+                            @Html.RadioButtonFor(model => model.gender, "Male", new { id = "male-true" })
+                            @Html.Label("male-true", "Male")
+                            @Html.RadioButtonFor(model => model.gender, "Female", new { id = "female-true" })
+                            @Html.Label("female-true", "Female")
+                            @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownListFor(model => model.dept, new List<SelectListItem> {
+                            new SelectListItem { Text="--Select Department--",Value="0"},
+                            new SelectListItem { Text="IT",Value="IT"},
+                            new SelectListItem { Text="CSE",Value="CSE"},
+                            new SelectListItem { Text="ECE",Value="ECE"},
+                            new SelectListItem { Text="EN",Value="EN"}
+                            }, new { @class = "form-input" })
+                            @Html.ValidationMessageFor(model => model.dept, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Make Changes" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

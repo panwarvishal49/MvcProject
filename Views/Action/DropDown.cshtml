@@ -1,0 +1,32 @@
+﻿@using MvcProject.Controllers
+@{
+    ViewData["Title"] = "DropDown";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+<div style="margin-top:100px;">
+    @using(Html.BeginForm("GetDropData","Action",FormMethod.Post))
+    {
+        <table align="center">
+            <tr>
+                <td >
+                    Select Roll No
+                </td>
+                <td>
+                    @Html.DropDownList("test", new SelectList(ViewBag.data, "roll_no", "roll_no"))
+                </td>
+            </tr>
+            <tr colspan ="2">
+                <td align="center">
+                    <input type="submit" name="submit" id="submit" class="form-submit" value="Get Data" />
+                </td>
+            </tr>
+
+
+        </table>
+    }
+
+    
+    
+</div>
+
